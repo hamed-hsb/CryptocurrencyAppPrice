@@ -1,5 +1,7 @@
 package hsb.ir.cryptocurrencyappprice.data.remote.dto
 
+import hsb.ir.cryptocurrencyappprice.domain.model.CoinDetail
+
 data class CoinDetailDto(
     val description: String,
     val development_status: String,
@@ -21,7 +23,21 @@ data class CoinDetailDto(
     val started_at: String,
     val symbol: String,
     val tags: List<Tag>,
-    val team: List<Team>,
+    val team: List<TeamMember>,
     val type: String,
     val whitepaper: Whitepaper
 )
+
+
+fun CoinDetailDto.toCoinDetail(): CoinDetail {
+    return CoinDetail(
+        coinId = id,
+        name = name,
+        description = description,
+        symbol = symbol,
+        rank =  rank,
+        isActive = is_active,
+        tags = tags.map { it.name },
+        team = team
+    )
+}
