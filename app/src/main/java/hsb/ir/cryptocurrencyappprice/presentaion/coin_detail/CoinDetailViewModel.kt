@@ -40,7 +40,7 @@ class CoinDetailViewModel @Inject constructor(
 
             when (result) {
                 is Resource.Success -> {
-                    _state.value = CoinDetailState(coins = result.data ?: result.data)
+                    _state.value = CoinDetailState(coin = result.data ?: result.data)
                 }
 
                 is Resource.Error -> {
